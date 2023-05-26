@@ -94,34 +94,28 @@ const mostrar2 = () => {
 let saldo = 0;
 const mostrar5 = () => {
     cantidadSaldo = cantidadPresupuesto - gasto.cantidadGasto;
-    let li = document.createElement('li');
     a = (cantidadPresupuesto.value);
     b = (cantidadGasto.value);
     if (saldo == 0) {
         saldo = a;
     }
     saldo = saldo - b;
-    li.textContent = `
-    $ ${saldo}
-        `;
     mostrarDatos5.innerHTML ="$ "+ saldo;
 
 }
 
 
+let deletePost = (e) => {
+    e.parentElement.parentElement.remove();
+    cantidadSaldo = cantidadPresupuesto - gasto.cantidadGasto;
+    c = parseInt(cantidadGasto.value);
+    a = (cantidadPresupuesto.value);
+    b = (cantidadGasto.value);
+    if (saldo == 0) {
+        saldo = a;
+    }
+    saldo = saldo - b + c;
+    mostrarDatos5.innerHTML ="$ "+ saldo;
 
-function removeItem( itemid ) {
-    var element = document.getElementById('div_' + itemid ); // will return element
-    element.parentNode.removeChild(element); // will remove the element from DOM
-  }
-// const mostrarDel = () => {
-//     mostrarDatos6.innerHTML = '';
-//         let li = document.createElement('li');
-//         g = (cantidadGasto.value);
-//         s = (saldo.value);
-//         total = g + s;
-      
-//             mostrarDatos6.innerHTML = saldo;
-    
-// }
+  };
 
