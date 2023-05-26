@@ -106,8 +106,8 @@ const mostrar5 = () => {
 function deleteRow(el) {
     if(!confirm("¿Deseas eliminar?")) return;
     
-    var tbl = el.parentNode.parentNode.parentNode;
-    var row = el.parentNode.parentNode.rowIndex;
+    let tbl = el.parentNode.parentNode.parentNode;
+    let row = el.parentNode.parentNode.rowIndex;
 
     tbl.deleteRow(row);
   
