@@ -67,21 +67,29 @@
                 </div>
 
                 <tr>
-                    <table class="col-6 centro">
-                        <tbody >
+                    <table id="createOrderTable" class="col-6 centro">
+                        <tbody>
                             <tr>
-                                <td>GASTO</td>
-                                <td>VALOR</td>
-                                <td>#</td>
+                                <th>GASTO</th>
+                                <th>VALOR</th>
+                                <th></th>
                             </tr>
-                            <tr id="myRow">
-                                <td id="mostrar3"></td>
-                                <td id="mostrar4"></td>
-                                <td> <i onClick="deletePost(this)" class="fas fa-trash-alt"></i></td>
+                            <tr>
+                                <td class="pol3" id="mostrar3"></td>
+                                <td class="pol4" id="mostrar4"></td>
+
+                                <td>
+                                    <button type="button" class="close" aria-hidden="true"
+                                        onclick="deleteRow(this);"><i class="fa-sharp fa-solid fa-trash"></i> </button>                                
+                                </td>
                             </tr>
                         </tbody>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-                    </table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+                    </table>
+                    ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
                 </tr>
+
+
+
             </div>
         </form>
     </div>

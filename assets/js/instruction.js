@@ -103,19 +103,12 @@ const mostrar5 = () => {
     mostrarDatos5.innerHTML ="$ "+ saldo;
 
 }
+function deleteRow(el) {
+    if(!confirm("¿Deseas eliminar?")) return;
+    
+    var tbl = el.parentNode.parentNode.parentNode;
+    var row = el.parentNode.parentNode.rowIndex;
 
-
-let deletePost = (e) => {
-    e.parentElement.parentElement.remove();
-    cantidadSaldo = cantidadPresupuesto - gasto.cantidadGasto;
-    c = parseInt(cantidadGasto.value);
-    a = (cantidadPresupuesto.value);
-    b = (cantidadGasto.value);
-    if (saldo == 0) {
-        saldo = a;
-    }
-    saldo = saldo - b + c;
-    mostrarDatos5.innerHTML ="$ "+ saldo;
-
-  };
-
+    tbl.deleteRow(row);
+  
+}
