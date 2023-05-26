@@ -14,6 +14,7 @@ let mostrarDatos3 = document.getElementById('mostrar3');
 let pedidos = []; let pedidos2 = [];
 let mostrarDatos4 = document.getElementById('mostrar4');
 let mostrarDatos5 = document.getElementById('mostrar5');
+let mostrarDatos6 = document.getElementById('mostrar6');
 let cantidadSaldo = 0;
 const campo = (campo) => {
     if (campo === '') {
@@ -79,6 +80,17 @@ const mostrar4 = () => {
     }
 }
 
+let gastos = 0;
+const mostrar2 = () => {
+    let li = document.createElement('li');
+    c = parseInt(cantidadGasto.value);
+    gastos = gastos + c;
+
+    
+    mostrarDatos2.innerHTML ="$ "+gastos;
+}
+
+
 let saldo = 0;
 const mostrar5 = () => {
     cantidadSaldo = cantidadPresupuesto - gasto.cantidadGasto;
@@ -92,27 +104,24 @@ const mostrar5 = () => {
     li.textContent = `
     $ ${saldo}
         `;
-    mostrarDatos5.innerHTML = saldo;
+    mostrarDatos5.innerHTML ="$ "+ saldo;
 
 }
-let gastos = 0;
-const mostrar2 = () => {
-    let li = document.createElement('li');
-    c = parseInt(cantidadGasto.value);
-    gastos = gastos + c;
 
-    li.textContent = `
-        $ ${gastos}
-        `;
-    mostrarDatos2.innerHTML = gastos;
-}
+
+
+function removeItem( itemid ) {
+    var element = document.getElementById('div_' + itemid ); // will return element
+    element.parentNode.removeChild(element); // will remove the element from DOM
+  }
 // const mostrarDel = () => {
-//     let li = document.createElement('li');
-//     del = parseInt(cantidadGasto.value);
-//     saldo = saldo + del;
-
-//     li.textContent = `
-//         $ ${saldo}
-//         `;
-//     mostrarDatos6.innerHTML = saldo;
+//     mostrarDatos6.innerHTML = '';
+//         let li = document.createElement('li');
+//         g = (cantidadGasto.value);
+//         s = (saldo.value);
+//         total = g + s;
+      
+//             mostrarDatos6.innerHTML = saldo;
+    
 // }
+
