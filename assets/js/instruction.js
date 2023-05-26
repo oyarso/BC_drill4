@@ -45,7 +45,7 @@ const gasto = () => {
     mostrar3();
     mostrar4();
     mostrar5();
-    deletear();
+    mostrarDel();
 }
 const mostrar = () => {
     let li = document.createElement('li');
@@ -67,8 +67,6 @@ const mostrar3 = () => {
         mostrarDatos3.appendChild(li);
     }
 }
-
-
 
 const mostrar4 = () => {
     mostrarDatos4.innerHTML = '';
@@ -94,9 +92,7 @@ const mostrar5 = () => {
     li.textContent = `
     $ ${saldo}
         `;
-
-
-    mostrarDatos5.appendChild(li);
+    mostrarDatos5.innerHTML = saldo;
 
 }
 let gastos = 0;
@@ -104,30 +100,19 @@ const mostrar2 = () => {
     let li = document.createElement('li');
     c = parseInt(cantidadGasto.value);
     gastos = gastos + c;
-    
+
     li.textContent = `
         $ ${gastos}
         `;
-    mostrarDatos2.appendChild(li);
+    mostrarDatos2.innerHTML = gastos;
 }
-
-
-
-
-// let gastos2 = 0;
-// const deletear = () => {
+// const mostrarDel = () => {
 //     let li = document.createElement('li');
-//    d = parseInt(cantidadGasto.value);
-//     gastos2 = gastos2 - c;
-    
-//     li.textContent = `
-//         $ ${gastos2}
-//         `;
-//     mostrarDatos2.appendChild(li);
-// }
+//     del = parseInt(cantidadGasto.value);
+//     saldo = saldo + del;
 
-  
-function deletea(btn) {
-    var row = btn.parentNode.parentNode;
-    row.parentNode.removeChild(row);
-  }
+//     li.textContent = `
+//         $ ${saldo}
+//         `;
+//     mostrarDatos6.innerHTML = saldo;
+// }
