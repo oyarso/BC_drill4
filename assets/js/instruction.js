@@ -46,7 +46,8 @@ const gasto = () => {
     mostrar3();
     mostrar4();
     mostrar5();
-    mostrarDel();
+    mostrar6();
+
 }
 const mostrar = () => {
     let li = document.createElement('li');
@@ -65,7 +66,8 @@ const mostrar3 = () => {
         li.textContent = `
             ${pedidos2[i].nombreGasto}
         `;
-        mostrarDatos3.appendChild(li);
+        mostrarDatos3.appendChild(li);       
+        
     }
 }
 
@@ -77,6 +79,7 @@ const mostrar4 = () => {
             $ ${pedidos2[i].cantidadGasto}
         `;
         mostrarDatos4.appendChild(li);
+
     }
 }
 
@@ -111,4 +114,11 @@ function deleteRow(el) {
 
     tbl.deleteRow(row);
   
+}
+
+const mostrar6 = () => {
+    mostrarDatos6.innerHTML =`
+    <button type="button" class="close" aria-hidden="true"
+    onclick="deleteRow(this);"><i class="fa-sharp fa-solid fa-trash"></i> </button>`
+
 }
