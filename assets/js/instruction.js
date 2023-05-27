@@ -118,7 +118,17 @@ function deleteRow(el) {
 
 const mostrar6 = () => {
     mostrarDatos6.innerHTML =`
-    <button type="button" class="close" aria-hidden="true"
-    onclick="deleteRow(this);"><i class="fa-sharp fa-solid fa-trash"></i> </button>`
+    <button type="button" class="close" aria-hidden="true" onclick="deleteRow(this);">&times;</button>
 
+    `
+}
+
+function deleteRow(el) {
+    if(!confirm("¿Deseas eliminar esta fila?")) return;
+    
+    var tbl = el.parentNode.parentNode.parentNode;
+    var row = el.parentNode.parentNode.rowIndex;
+
+    tbl.deleteRow(row);
+  
 }
