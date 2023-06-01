@@ -5,7 +5,6 @@ class Gasto {
     }
 }
 
-//DOM
 let cantidadPresupuesto = document.getElementById('cantidadPresupuesto');
 let viewPresupuesto = document.getElementById('presupuesto');
 let viewSumaGasto = document.getElementById('sumarGasto');
@@ -27,8 +26,18 @@ const agregar = () => {
         alert('Debe llenar presupuesto')
         return
     }
-    viewPresupuesto.innerHTML = `${cantidadPresupuesto.value}`;
+    if (cantidadPresupuesto.value > 0) {
+        viewPresupuesto.innerHTML = `${cantidadPresupuesto.value}`;
+    }else{
+        alert('Debe ingresar valores positivos y mayores que cero')
+        refreshPage();
+        return
+    }
 }
+
+function refreshPage(){
+    window.location.reload();
+} 
 
 const gasto = () => {
 
@@ -39,6 +48,12 @@ const gasto = () => {
 
     if (campo(cantidadGasto.value)) {
         alert('Debe llenar cantidad de Gasto')
+        return
+    }
+    if (cantidadGasto.value > 0) {
+        viewPresupuesto.innerHTML = `${cantidadPresupuesto.value}`;
+    }else{
+        alert('Debe ingresar valores positivos y mayores que cero')
         return
     }
 
@@ -54,7 +69,6 @@ const gasto = () => {
     formulario.reset();
 }
 
-//VALIDACIONES
 const campo = (campo) => {
     if (campo === '') {
         return true
@@ -90,7 +104,7 @@ const eliminar = (i) => {
 
     viewBalance.innerHTML = `$${balance}`;
     viewSumaGasto.innerHTML = `$${sumaGasto}`;
-    
+
     let elementoEliminar = document.getElementById(`fila${i}`);
     elementoEliminar.remove();
     listaGastos.splice(i, 1);
