@@ -28,16 +28,16 @@ const agregar = () => {
     }
     if (cantidadPresupuesto.value > 0) {
         viewPresupuesto.innerHTML = `${cantidadPresupuesto.value}`;
-    }else{
+    } else {
         alert('Debe ingresar valores positivos y mayores que cero')
         refreshPage();
         return
     }
 }
 
-function refreshPage(){
+function refreshPage() {
     window.location.reload();
-} 
+}
 
 const gasto = () => {
 
@@ -52,7 +52,7 @@ const gasto = () => {
     }
     if (cantidadGasto.value > 0) {
         viewPresupuesto.innerHTML = `${cantidadPresupuesto.value}`;
-    }else{
+    } else {
         alert('Debe ingresar valores positivos y mayores que cero')
         return
     }
@@ -97,18 +97,15 @@ const recorrerListaGasto = () => {
 const eliminar = (i) => {
 
 
-
-    sumaGasto -= parseInt(listaGastos[i].cantidadGasto);
-    balance = parseInt(viewPresupuesto.innerHTML) + sumaGasto;
-
-
-    viewBalance.innerHTML = `$${balance}`;
-    viewSumaGasto.innerHTML = `$${sumaGasto}`;
-
-    let elementoEliminar = document.getElementById(`fila${i}`);
-    elementoEliminar.remove();
-    listaGastos.splice(i, 1);
+        sumaGasto -= parseInt(listaGastos[i].cantidadGasto);
+        balance = parseInt(viewPresupuesto.innerHTML) - sumaGasto;
 
 
-}
+        viewBalance.innerHTML = `$${balance}`;
+        viewSumaGasto.innerHTML = `$${sumaGasto}`;
 
+        let elementoEliminar = document.getElementById(`fila${i}`);
+        elementoEliminar.remove();
+        listaGastos.splice(i, 1);
+        i++;
+    } 
