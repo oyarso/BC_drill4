@@ -5,17 +5,56 @@ class Gasto {
     }
 }
 
+//DOM
 let cantidadPresupuesto = document.getElementById('cantidadPresupuesto');
-let cantidadGasto = document.getElementById('cantidadGasto');
+let viewPresupuesto = document.getElementById('presupuesto');
+let viewSumaGasto = document.getElementById('sumarGasto');
+let viewBalance = document.getElementById('balance');
+let viewListaGasto = document.getElementById('viewListaGasto');
+
 let nombreGasto = document.getElementById('nombreGasto');
-let mostrarDatos = document.getElementById('mostrar');
-let mostrarDatos2 = document.getElementById('mostrar2');
-let mostrarDatos3 = document.getElementById('mostrar3');
-let pedidos = []; let pedidos2 = [];
-let mostrarDatos4 = document.getElementById('mostrar4');
-let mostrarDatos5 = document.getElementById('mostrar5');
-let mostrarDatos6 = document.getElementById('mostrar6');
+let cantidadGasto = document.getElementById('cantidadGasto');
+let formulario = document.getElementById('formulario');
+
+let listaGastos = [];
 let cantidadSaldo = 0;
+let sumaGasto = 0;
+let balance = 0;
+
+
+const agregar = () => {
+    if (campo(cantidadPresupuesto.value)) {
+        alert('Debe llenar presupuesto')
+        return
+    }
+    viewPresupuesto.innerHTML = `${cantidadPresupuesto.value}`;
+}
+
+const gasto = () => {
+
+    if (campo(nombreGasto.value)) {
+        alert('Debe llenar el campo nombre del Gasto')
+        return
+    }
+
+    if (campo(cantidadGasto.value)) {
+        alert('Debe llenar cantidad de Gasto')
+        return
+    }
+
+    let gastos = new Gasto(nombreGasto.value, cantidadGasto.value);
+    sumaGasto = sumaGasto + parseInt(gastos.cantidadGasto);
+    balance = parseInt(viewPresupuesto.innerHTML) - sumaGasto;
+
+    viewBalance.innerHTML = `$${balance}`;
+    viewSumaGasto.innerHTML = `$${sumaGasto}`;
+
+    listaGastos.push(gastos)
+    recorrerListaGasto();
+    formulario.reset();
+}
+
+//VALIDACIONES
 const campo = (campo) => {
     if (campo === '') {
         return true
@@ -24,111 +63,38 @@ const campo = (campo) => {
     }
 }
 
-const agregar = () => {
-    if (campo(cantidadPresupuesto.value)) {
-        alert('Debe llenar presupuesto')
-        return
-    }
-    mostrar();
-}
-const gasto = () => {
-    if (campo(nombreGasto.value)) {
-        alert('Debe llenar el campo nombre del Gasto')
-        return
-    }
-    if (campo(cantidadGasto.value)) {
-        alert('Debe llenar cantidad de Gasto')
-        return
-    }
-    let solicitud2 = new Gasto(nombreGasto.value, cantidadGasto.value);
-    pedidos2.push(solicitud2);
-    mostrar2();
-    mostrar3();
-    mostrar4();
-    mostrar5();
-    mostrar6();
-
-}
-const mostrar = () => {
-    let li = document.createElement('li');
-    li.textContent = `
-        $ ${cantidadPresupuesto.value}
-        `;
-    mostrarDatos.appendChild(li);
-    console.log(cantidadPresupuesto.value)
-}
-
-
-const mostrar3 = () => {
-    mostrarDatos3.innerHTML = '';
-    for (let i = 0; i < pedidos2.length; i++) {
-        let li = document.createElement('li');
-        li.textContent = `
-            ${pedidos2[i].nombreGasto}
-        `;
-        mostrarDatos3.appendChild(li);       
-        
+const recorrerListaGasto = () => {
+    viewListaGasto.innerHTML = '';
+    for (let i = 0; i < listaGastos.length; i++) {
+        viewListaGasto.innerHTML +=
+            `<tr id="fila${i}" >
+            <td>${listaGastos[i].nombreGasto}</td>
+            <td>${listaGastos[i].cantidadGasto}</td>
+            <td>
+                <a href="#" class="delete-icon" onclick="eliminar(${i})">
+                    <i class="bi bi-trash-fill"></i>
+                </a>
+            </td>
+        </tr>`
     }
 }
 
-const mostrar4 = () => {
-    mostrarDatos4.innerHTML = '';
-    for (let i = 0; i < pedidos2.length; i++) {
-        let li = document.createElement('li');
-        li.textContent = `
-            $ ${pedidos2[i].cantidadGasto}
-        `;
-        mostrarDatos4.appendChild(li);
 
-    }
-}
+const eliminar = (i) => {
 
-let gastos = 0;
-const mostrar2 = () => {
-    let li = document.createElement('li');
-    c = parseInt(cantidadGasto.value);
-    gastos = gastos + c;
 
+
+    sumaGasto -= parseInt(listaGastos[i].cantidadGasto);
+    balance = parseInt(viewPresupuesto.innerHTML) + sumaGasto;
+
+
+    viewBalance.innerHTML = `$${balance}`;
+    viewSumaGasto.innerHTML = `$${sumaGasto}`;
     
-    mostrarDatos2.innerHTML ="$ "+gastos;
+    let elementoEliminar = document.getElementById(`fila${i}`);
+    elementoEliminar.remove();
+    listaGastos.splice(i, 1);
+
+
 }
 
-
-let saldo = 0;
-const mostrar5 = () => {
-    cantidadSaldo = cantidadPresupuesto - gasto.cantidadGasto;
-    a = (cantidadPresupuesto.value);
-    b = (cantidadGasto.value);
-    if (saldo == 0) {
-        saldo = a;
-    }
-    saldo = saldo - b;
-    mostrarDatos5.innerHTML ="$ "+ saldo;
-
-}
-function deleteRow(el) {
-    if(!confirm("¿Deseas eliminar?")) return;
-    
-    let tbl = el.parentNode.parentNode.parentNode;
-    let row = el.parentNode.parentNode.rowIndex;
-
-    tbl.deleteRow(row);
-  
-}
-
-const mostrar6 = () => {
-    mostrarDatos6.innerHTML =`
-    <button type="button" class="close" aria-hidden="true" onclick="deleteRow(this);">&times;</button>
-
-    `
-}
-
-function deleteRow(el) {
-    if(!confirm("¿Deseas eliminar esta fila?")) return;
-    
-    var tbl = el.parentNode.parentNode.parentNode;
-    var row = el.parentNode.parentNode.rowIndex;
-
-    tbl.deleteRow(row);
-  
-}
