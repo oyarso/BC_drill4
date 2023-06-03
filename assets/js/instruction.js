@@ -78,8 +78,10 @@ const campo = (campo) => {
 }
 
 const recorrerListaGasto = () => {
+    console.log(listaGastos)
     viewListaGasto.innerHTML = '';
     for (let i = 0; i < listaGastos.length; i++) {
+
         viewListaGasto.innerHTML +=
             `<tr id="fila${i}" >
             <td>${listaGastos[i].nombreGasto}</td>
@@ -91,11 +93,11 @@ const recorrerListaGasto = () => {
             </td>
         </tr>`
     }
+    
 }
 
 
 const eliminar = (i) => {
-
 
         sumaGasto -= parseInt(listaGastos[i].cantidadGasto);
         balance = parseInt(viewPresupuesto.innerHTML) - sumaGasto;
@@ -107,5 +109,5 @@ const eliminar = (i) => {
         let elementoEliminar = document.getElementById(`fila${i}`);
         elementoEliminar.remove();
         listaGastos.splice(i, 1);
-        i++;
+        recorrerListaGasto();
     } 
